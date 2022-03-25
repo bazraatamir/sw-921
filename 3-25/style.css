@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.big{
+    width: 500px;
+    height: 200vh;
+   
+   
+}
+.big .child{
+    width: 200px;
+    height: 100px;
+}
+.big .child-1{
+    background-color:black ;
+    
+    
+}
+.big .child-2{
+    background-color:brown;
+    position: sticky;
+    top: 10px;
+}
+.big .child-4{
+    background-image: conic-gradient(red 0deg 45deg, blue 45deg 90deg, green 90deg 180deg);
+}
+.big .child-3{
+    background-color:aqua ;
+}
