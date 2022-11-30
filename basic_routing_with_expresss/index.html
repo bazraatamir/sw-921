@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>Document</title>
+</head>
+<body>
+    <input id="text" type="text">
+      <button id="getBtn">get</button>
+      <button id="PostBtn">Post</button>
+      <ul id="display"></ul>
+    <script>
+        let get = document.querySelector('#getBtn');
+        let post = document.querySelector('#PostBtn');
+        let display = document.querySelector('#display');
+        let inp = document.querySelector('#text');
+        get.addEventListener('click', async ()=>{
+         let respons =  await fetch('http://localhost:3001/students' , {method:'GET'});
+         let data = await respons.json();
+         console.log(data)
+          data.forEach(element => {
+            display.innerHTML +=`<li>${element.name}</li>`
+          });
+          post.addEventListener('click',async()=>{
+            let respons = await fetch('http://localhost:3001/students',
+            {
+              method:"POST",
+              headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+              body:`name:'${inp.value}'`,
+            });
+            let data = await respons.json()
+            console.log(data)
+            display.innerHTML += `<li>${data.name}</li>`;
+
+          })
+        })
+    </script>
+  
+</body>
+</html>
