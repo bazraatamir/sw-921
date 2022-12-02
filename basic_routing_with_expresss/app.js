@@ -20,21 +20,17 @@ app.get('/students',(req,res)=>{
 
 
 app.post('/students',(req,res)=>{
-  console.log(req.headers)
+  console.log(req.body)
     
     let student ={
         id:students.length+1,
         name:req.body.name,
     }
     students.push(student);
-    fs.writeFile('students.json',JSON.stringify(students));
+    fs.writeFile('students.json',JSON.stringify(students,null,2));
     res.send(student);
-  
-  
-   
-  
+});
 
-})
 app.listen(3001, async ()=>{
     try{
         const file =  await fs.readFile('students.json','utf-8');
