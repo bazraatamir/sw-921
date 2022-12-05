@@ -18,7 +18,11 @@
         let display = document.querySelector('#display');
         let inp = document.querySelector('#text');
         const deleteBtn = (e)=>{
-          fetch("http://localhost:3001/students/"+e.target.dataset.id, {method:'DELETE'})
+          fetch("http://localhost:3001/students/"+e.target.dataset.id, 
+          {
+            method:'DELETE'
+          })
+          e.target.parentElement.remove()
           }
         get.addEventListener('click', async ()=>{
          let respons =  await fetch('http://localhost:3001/students' , {method:'GET'});
@@ -29,11 +33,16 @@
           });
          
           post.addEventListener('click',async()=>{
+            let student={
+              name:inp.value
+            }
+            console.log(student)
             let respons = await fetch('http://localhost:3001/students',
+            
             {
               method:"POST",
-              headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-              body:`name:'${inp.value}'`,
+              headers:{'Content-Type':'application/json'},
+              body:JSON.stringify(student),
             });
             let data = await respons.json()
             console.log(data)
