@@ -10,20 +10,24 @@
 <body>
     <input id="text" type="text">
       <button id="getBtn">get</button>
-      <button id="PostBtn">Post</button>
+      <button  id="PostBtn">Post</button>
       <ul id="display"></ul>
     <script>
         let get = document.querySelector('#getBtn');
         let post = document.querySelector('#PostBtn');
         let display = document.querySelector('#display');
         let inp = document.querySelector('#text');
+        const deleteBtn = (e)=>{
+          fetch("http://localhost:3001/students/"+e.target.dataset.id, {method:'DELETE'})
+          }
         get.addEventListener('click', async ()=>{
          let respons =  await fetch('http://localhost:3001/students' , {method:'GET'});
          let data = await respons.json();
          console.log(data)
           data.forEach(element => {
-            display.innerHTML +=`<li>${element.name}</li>`
+            display.innerHTML +=`<li>${element.name} <button data-id="${element.id}"" onclick="deleteBtn(event) "> delet item</button></li>`
           });
+         
           post.addEventListener('click',async()=>{
             let respons = await fetch('http://localhost:3001/students',
             {

@@ -30,6 +30,15 @@ app.post('/students',(req,res)=>{
     fs.writeFile('students.json',JSON.stringify(students,null,2));
     res.send(student);
 });
+app.delete('students/:id',(req,res)=>{
+   let student =  students.filter((element)=>{
+        return element.id!=req.params.id
+    })
+    fs.writeFile('students.json',JSON.stringify(student,null,2));
+    res.send(student)
+
+})
+
 
 app.listen(3001, async ()=>{
     try{
